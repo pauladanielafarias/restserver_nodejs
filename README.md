@@ -7,12 +7,11 @@
 3. [```routes/```](routes/) → carpeta que contiene las rutas de la app
 4. [```controllers/```](controllers/) → carpeta que contiene los controladores que se llaman en las rutas
 
+<br>
 
 
----
 
-**  Recordar instalar los módulos de Node.js utilizados: ```$ npm i ```
-Se pueden ver en el archivo ```package.json```
+** Recordar instalar los módulos/paquetes de Node.js utilizados con el comando ```$ npm i```. Dichos módulos/paquetes se pueden ver en el archivo [```package.json```](package.json)
 
 
 
