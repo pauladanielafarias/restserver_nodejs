@@ -11,7 +11,8 @@
 
 ---
 
-**  Reconstruir los módulos de Node.js utilizados: ```$ npm i ```
+**  Recordar instalar los módulos de Node.js utilizados: ```$ npm i ```
+Se pueden ver en el archivo ```package.json```
 
 
 
