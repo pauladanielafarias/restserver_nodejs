@@ -1,4 +1,4 @@
-# RESTServer base
+# WebServer + RESTServer base
 
 ### Archivos
 
@@ -7,6 +7,8 @@
 3. [```routes/```](routes/) → carpeta que contiene las rutas de la app
 4. [```controllers/```](controllers/) → carpeta que contiene los controladores que se llaman en las rutas
 
+
+** Ejecutar ```npm i ``` para reconstruir los módulos de Node.js utilizados
 
 
 
