@@ -1,6 +1,8 @@
 //----------- paquetes, modulos, librerias -----------
 const express = require('express'); // ver: https://www.npmjs.com/package/express
-require('dotenv').config(); //loads environment variables from a .env file into process.env. ver: https://www.npmjs.com/package/dotenv
+ //loads environment variables from an .env file into process.env. ver: https://www.npmjs.com/package/dotenv
+const dotenv = require('dotenv').config();
+require('dotenv-expand').expand(dotenv) // ver: https://www.npmjs.com/package/dotenv-expand
 const cors = require('cors'); //provides a Connect/Express middleware that can be used to enable CORS with various options. ver: https://www.npmjs.com/package/cors
 const hbs = require('hbs');
 
@@ -15,14 +17,6 @@ class Server {
 
         //using PORT environment variable from file .env
         this.port = process.env.PORT; 
-
-        //-- RUTAS:
-        // API/USUARIOS
-        this.usuariosPaths = ['/api/usuarios','/api/users'];
-
-        // todas las rutas que no estén declaradas van a retornar un error 404
-        this.error404Path = ('/*')
-
 
         //----- Middlewares: funciones que van a ejecutarse siempre al levantar el servidor - son las funciones que tienen app.use() -----
         this.middlewares();
@@ -44,6 +38,10 @@ class Server {
 
         // Servir contenido estático con express
         this.app.use(express.static('public'));
+
+        // use bootstrap
+        this.app.use(express.static("node_modules/bootstrap/dist/"));
+
         //start view engine
         this.app.set('view engine', 'html');
         // start hbs
@@ -53,20 +51,16 @@ class Server {
 
     //------ RUTAS ------
     routes() {
-        // API/USUARIOS ROUTE
-        this.app.use(this.usuariosPaths, require('../routes/usuarios.routes'))
-        
+        this.app.use('/', require('../routes'))
 
-
-        // ERROR 404 ROUTE + CONTROLLER
-        this.app.use(this.error404Path, require('../routes/errors.routes'));
-
+        // todas las rutas que no estén declaradas en routes van a retornar un error 404
+        this.app.use(require('../controllers/error404').error404)
     };
 
     //------ LISTEN AT PORT ------
     listenPort(){
         this.app.listen(this.port, () => {
-            console.log(`App listening at port: ${this.port}`)
+            console.log(`App ${process.env.npm_package_name} listening at port: ${this.port}`)
         })
     
     }
