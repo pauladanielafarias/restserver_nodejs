@@ -6,14 +6,13 @@ const {response, request} = require('express')
 //-- API/USUARIOS GET --
 const get_usuarios = (req = request, res = response) => {
     
-    const {q='no query', apikey} = req.query;
+    const {q='no query', apikey='no apikey'} = req.query;
 
     res.json({
         msg:'GET API - controller',
         query:{
             q,
             apikey
-
         }
     });
 };
